@@ -1,0 +1,2 @@
+class CartBeatsController < ApplicationController
+end

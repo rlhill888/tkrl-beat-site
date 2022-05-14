@@ -1,0 +1,2 @@
+class UserBeatsController < ApplicationController
+end

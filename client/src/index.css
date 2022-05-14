@@ -5,6 +5,18 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding: 5vh 0vw;
+  margin: auto;
+  width:100%;
+  height: 100%;
+  background-image: 
+  url('./photos/cool-background.gif');
+  background-attachment: fixed;
+  background-position: center center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: black;
 }
 
 code {

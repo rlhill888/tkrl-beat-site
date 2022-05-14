@@ -1,0 +1,2 @@
+class LicenseBeatsController < ApplicationController
+end
