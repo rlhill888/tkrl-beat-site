@@ -6,6 +6,8 @@ import Cart from './Cart';
 import Contact from './Contact';
 import StudioSession from './StudioSession';
 import ExploreBeats from './ExploreBeats';
+import WelcomePage from './WelcomePage';
+import SearchSpecificBeat from './SearchSpecificBeat';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme= createTheme({
@@ -43,9 +45,15 @@ function App() {
     <Route exact path="/ExploreBeats">
         <ExploreBeats />
     </Route>
-    <Route  path="/">
+    <Route exact path="/SearchSpecificBeat">
+        <SearchSpecificBeat />
+    </Route>
+    {/* <Route  exact path="/home">
             <Home />
-        </Route>
+    </Route> */}
+    <Route   path="/">
+            <WelcomePage />
+    </Route>
 
    </Switch>
    </ThemeProvider>

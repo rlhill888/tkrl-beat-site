@@ -15,5 +15,5 @@
 
 .app_bar{
     background: rgb(0,0,0);
-    background: linear-gradient(54deg, rgba(0,0,0,1) 0%, rgba(255,0,157,1) 100%);
+    background: linear-gradient(54deg, rgba(0,0,0,1) 0%, rgb(0, 0, 0) 100%);
 }
