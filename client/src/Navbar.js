@@ -19,6 +19,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import logo from './photos/tkrl_logo_gif.gif'
 import './Navbar.css'
 import SearchIcon from '@mui/icons-material/Search';
+// import AudioPlayer from "./AudioPlayer";
+import AudioPlayer from 'material-ui-audio-player';
 
 
 function NavBar(){
@@ -45,6 +47,16 @@ function NavBar(){
         <IconButton onClick={()=> history.push('/SearchSpecificBeat')}>
             <SearchIcon color='primary'/>
         </IconButton>
+        
+        <Box
+        style={{
+            position: 'absolute',
+           right: '37%',
+           left: '37%'
+       }}>
+        <AudioPlayer />
+        </Box>
+       
 
         <Button style={{
              position: 'absolute',
