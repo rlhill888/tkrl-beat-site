@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { Button } from "@mui/material";
 
-function Contact(){
+function Contact({songSrc}){
 
     const [body, setBody]= useState('')
     const [subject, setSubject]= useState('')
@@ -24,7 +24,7 @@ function Contact(){
         }}
         className= 'contact_background'
         >
-        <NavBar /> 
+        <NavBar songSrc={songSrc}/> 
         <br />
         <br />
         <br />
@@ -38,7 +38,9 @@ function Contact(){
                         <br />
                         <br />
                         <Container>
-                            <Paper>
+                            <Paper style={{
+                                backgroundColor: 'white'
+                            } }>
                                 <Box p={4}>
                                     <form>
                                     <h2>Send Me a Message</h2>
@@ -77,7 +79,11 @@ function Contact(){
                         <br />
                         <Container>
                             <Box>
-                                <Paper>
+                                <Paper
+                                style={{
+                                    backgroundColor: 'white'
+                                } }
+                                >
                                     <Box p={2}>
 
                                         <h2>Other Ways To Contact Me</h2>

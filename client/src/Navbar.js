@@ -21,11 +21,85 @@ import './Navbar.css'
 import SearchIcon from '@mui/icons-material/Search';
 // import AudioPlayer from "./AudioPlayer";
 import AudioPlayer from 'material-ui-audio-player';
+import { createTheme, ThemeProvider } from '@material-ui/core';
+import Popper from '@mui/material/Popper';
 
 
-function NavBar(){
+function NavBar({songSrc, user, setUser}){
     const history = useHistory()
     const [openDrawer, setOpenDrawer]= useState(false)
+
+    // const useStyles = makeStyles((theme) => {
+    //     return {
+    //       root: {
+    //         [theme.breakpoints.down('sm')]: {
+    //           width: '100%',
+    //         },
+    //       },
+    //       loopIcon: {
+    //         color: '#3f51b5',
+    //         '&.selected': {
+    //           color: '#0921a9',
+    //         },
+    //         '&:hover': {
+    //           color: '#7986cb',
+    //         },
+    //         [theme.breakpoints.down('sm')]: {
+    //           display: 'none',
+    //         },
+    //       },
+    //       playIcon: {
+    //         color: '#f50057',
+    //         '&:hover': {
+    //           color: '#ff4081',
+    //         },
+    //       },
+    //       replayIcon: {
+    //         color: '#e6e600',
+    //       },
+    //       pauseIcon: {
+    //         color: '#0099ff',
+    //       },
+    //       volumeIcon: {
+    //         color: 'rgba(0, 0, 0, 0.54)',
+    //       },
+    //       volumeSlider: {
+    //         color: 'black',
+    //       },
+    //       progressTime: {
+    //         color: 'rgba(0, 0, 0, 0.54)',
+    //       },
+    //       mainSlider: {
+    //         color: '#3f51b5',
+    //         '& .MuiSlider-rail': {
+    //           color: '#7986cb',
+    //         },
+    //         '& .MuiSlider-track': {
+    //           color: '#3f51b5',
+    //         },
+    //         '& .MuiSlider-thumb': {
+    //           color: '#303f9f',
+    //         },
+    //       },
+    //     };
+    //   });
+
+    const theme= createTheme({
+        palette: {
+            type: 'light',
+            primary: {
+              main: '#ff009d',
+              light: '#606060',
+            },
+            secondary: {
+              main: '#5400b3',
+            },
+            background: {
+              default: '#ffffff',
+              paper: 'black',
+            },
+          }
+    })
 
     return(
         <div style={{
@@ -54,7 +128,14 @@ function NavBar(){
            right: '37%',
            left: '37%'
        }}>
-        <AudioPlayer />
+
+           <ThemeProvider theme={theme}>
+        <AudioPlayer 
+        variation="primary"
+        src={songSrc}
+        
+        />
+        </ThemeProvider>
         </Box>
        
 
@@ -66,6 +147,36 @@ function NavBar(){
         >
             <ShoppingCartIcon />
         </Button>
+        {user? 
+        
+        <div
+        style={{
+            position: 'absolute',
+           right: 120
+       }}
+        > 
+        <Button>{user.first_name} {user.last_name}</Button>
+        <Button onClick={()=>{
+            fetch('logout', {
+                method: 'DELETE',
+                headers: {'Content-Type' : 'application/json'}
+            })
+            setUser(null)
+        }}>Log Out</Button>
+        </div>
+        
+        : 
+        
+        <div
+        style={{
+            position: 'absolute',
+           right: 120
+       }}
+        > 
+        <Button
+        onClick={()=> history.push('/login')}
+        >Log In</Button>
+        </div>}
         </Toolbar>
         </AppBar>
         

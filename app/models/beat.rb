@@ -13,4 +13,6 @@ class Beat < ApplicationRecord
     has_many :licenses, through: :license_beats
     has_many :users, through: :user_beats
     has_many :carts, through: :cart_beats
+
+    
 end

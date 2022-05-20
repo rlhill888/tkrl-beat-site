@@ -1,7 +1,11 @@
 class BeatSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
   # attributes :id, :beat_name, :description, :mp3_price, :wav_price, :track_outs_price, :genre, :collaborators, :albumn_cover
-  attributes :id, :beat_name, :description, :mp3_price, :wav_price, :track_outs_price, :genre, :collaborators, :albumn_cover, :current_deal_sale, :featured_beats, :sale_discount_percentage, :instruments, :sampled_beat, :sampled_beat_link, :mp3_file, :wav_file, :track_outs
+  attributes :id, :beat_name, :description, :mp3_price, :wav_price, :track_outs_price, :genre, :collaborators, :albumn_cover, :current_deal_sale, :featured_beats, :sale_discount_percentage, :instruments, :sampled_beat, :sampled_beat_link, :mp3_file, :wav_file, :track_outs 
+
+
+  
+
 
  def albumn_cover
   if object.albumn_cover.attached?

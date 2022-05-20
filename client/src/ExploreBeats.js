@@ -13,28 +13,58 @@ import EventCard from "./EventCard";
 import UpcomingEventsCard from "./UpcomingEventsCard";
 import FeaturedBeats from "./FeaturedBeats";
 import AudioPlayer from "./AudioPlayer";
+import DealsAndDiscounts from "./DealsAndDiscount";
+import NewestBeats from "./NewestBeats";
 
 
 
-function ExploreBeats(){
+
+function ExploreBeats({songSrc, setSongSrc, user, setUser}){
     const [featuredBeats, setFeaturedBeats]= useState(null)
     const [beatsWithDeals, SetBeatsWithDeals]= useState(null)
     const [newestBeats, setNewestBeats]= useState(null)
 
     let featureBeatJsx
+    let beatsWithealsJsx
+    let newestBeatJsx
+
+    console.log(newestBeats)
+
+
         if(featuredBeats!==null){
-             featureBeatJsx =<FeaturedBeats beats={featuredBeats}/>
+             featureBeatJsx =<FeaturedBeats songSrc={songSrc} setSongSrc={setSongSrc} beats={featuredBeats}/>
         }
         if(featuredBeats===null){
-            featureBeatJsx= <> </>
+            featureBeatJsx= <> 
+            <h1>Loading</h1>
+            </>
+        }
+
+        if(beatsWithDeals!==null){
+            beatsWithealsJsx= <DealsAndDiscounts songSrc={songSrc} setSongSrc={setSongSrc} beats={beatsWithDeals}/>
+            
+       }
+       if(beatsWithDeals===null){
+        beatsWithealsJsx= <> 
+        <h1>Loading</h1>
+        </>
+         
+       }
+
+       if(newestBeats!==null){
+        newestBeatJsx= <NewestBeats songSrc={songSrc} setSongSrc={setSongSrc} beats={newestBeats}/>
+        
+        }
+        if(newestBeats===null){
+        newestBeatJsx= <>
+        <h1>Loading</h1>
+         </>
+            
         }
   
     
 
 
-    function updateState(state, setState){
-        setState(state)
-    }
    
 
 
@@ -44,21 +74,15 @@ function ExploreBeats(){
         .then(res=> res.json())
         .then(res=> {
             setFeaturedBeats(res)
-            setFeaturedBeats((p)=> p)
-        
         })
-        
-
         fetch('http://localhost:4000/show_current_deals_and_sales')
         .then(res=> res.json())
         .then(res => {
-            SetBeatsWithDeals(res)
             SetBeatsWithDeals(res)})
 
         fetch('http://localhost:4000/show_newest_beats')
         .then(res=> res.json())
         .then(res => {
-            setNewestBeats(res)
             setNewestBeats(res)})
 
         
@@ -70,7 +94,8 @@ function ExploreBeats(){
         <div 
         // className='main_beats_background'
         >  
-        <NavBar />
+        <NavBar setUser={setUser} user={user} songSrc={songSrc}/>
+        {/* <TempBeatForm /> */}
         
         <Container
         style={{
@@ -79,122 +104,10 @@ function ExploreBeats(){
         >
 
             
-           <Paper elevation={15} className='newestbeats_background'>
-               <Box
-               p={4}
-               >
-                    <h3
-                    style={{
-                        color: 'white'
-                    }}
-                    >Current Deals And Sales</h3>
-                    <br />
-                       <Container>
-                        <Grid spacing={7}
-                        direction="row"
-                            alignItems="center"
-                            justifyContent="center"
-                             container>
-                            <Grid item >
-                                <Box >
-                                    <CardActionArea>
-                                    <Paper>
-                                        <Box width='250px' height='250px'>
-                                        </Box>
-                                    </Paper>
-                                    </CardActionArea>
-
-                                </Box>
-                            </Grid>
-                            <Grid item>
-                                <Box >
-                                    <CardActionArea>
-                                    <Paper>
-                                        <Box width='250px' height='250px'>
-
-                                        </Box>
-                                    </Paper>
-                                    </CardActionArea>
-
-                                </Box>
-                            </Grid>
-                            <Grid item>
-                                <Box >
-                                    <CardActionArea>
-                                    <Paper>
-                                        <Box width='250px' height='250px'>
-
-                                        </Box>
-                                    </Paper>
-                                    </CardActionArea>
-
-                                </Box>
-                            </Grid>
-                        </Grid>
-                    </Container>
-
-               </Box>
-           </Paper>
+            {beatsWithealsJsx}
            <br />
            <br />
-           <Paper elevation={15} className='newestbeats_background'>
-               <Box
-               p={4}
-               >
-                    <h3
-                    style={{
-                        color: 'white'
-                    }}
-                    >Newest Beats</h3>
-                    <br />
-                       <Container>
-                        <Grid spacing={7}
-                        direction="row"
-                            alignItems="center"
-                            justifyContent="center"
-                             container>
-                            <Grid item >
-                                <Box >
-                                    <CardActionArea>
-                                    <Paper>
-                                        <Box width='250px' height='250px'>
-                                        </Box>
-                                    </Paper>
-                                    </CardActionArea>
-
-                                </Box>
-                            </Grid>
-                            <Grid item>
-                                <Box >
-                                    <CardActionArea>
-                                    <Paper>
-                                        <Box width='250px' height='250px'>
-
-                                        </Box>
-                                    </Paper>
-                                    </CardActionArea>
-
-                                </Box>
-                            </Grid>
-                            <Grid item>
-                                <Box >
-                                    <CardActionArea>
-                                    <Paper>
-                                        <Box width='250px' height='250px'>
-
-                                        </Box>
-                                    </Paper>
-                                    </CardActionArea>
-
-                                </Box>
-                            </Grid>
-                        </Grid>
-                    </Container>
-
-
-
-               </Box>
-           </Paper>
+            {newestBeatJsx}
            <br />
            <br />
             {featureBeatJsx}

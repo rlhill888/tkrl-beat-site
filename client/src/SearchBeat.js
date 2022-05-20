@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
@@ -10,15 +10,24 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Switch from '@mui/material/Switch';
+import ExploreBeatCard from "./ExploreBeatCard";
 
 
-function SearchBeat(){
+function SearchBeat({setSongSrc}){
     const [beatName, setBeatName]= useState('')
     const [genre, setGenre]= useState('')
     const [tempo, setTempo]= useState('')
     const [instruments, setInstruments]= useState('')
 
     const [showFilters, setShowFilters]=useState(false)
+    const [beats, setBeats]= useState([])
+
+    const filteredBeats= beats.filter((beat)=> beat.beat_name.includes(beatName)&& beat.genre.includes(genre)&&beat.instruments.includes(instruments))
+    useEffect(()=>{
+        fetch('/beats')
+        .then(res=> res.json())
+        .then(res=> setBeats(res))
+    }, [])
 
     let showFilterJsx
 
@@ -52,7 +61,11 @@ function SearchBeat(){
 
                         <Grid  item>
                             <Box>
-                                <Paper>
+                                <Paper 
+                                style={{
+                                    backgroundColor: 'white'
+                                }}
+                                >
                                     <Box p={2}>
                                             <h3
                                             >Beat Name</h3>
@@ -64,7 +77,11 @@ function SearchBeat(){
 
                         <Grid  item>
                             <Box>
-                                <Paper>
+                                <Paper
+                                style={{
+                                    backgroundColor: 'white'
+                                }}
+                                >
                                     <Box p={2}>
                                             <h3
                                             >Genre</h3>
@@ -76,7 +93,11 @@ function SearchBeat(){
 
                         <Grid  item>
                             <Box>
-                                <Paper>
+                                <Paper
+                                style={{
+                                    backgroundColor: 'white'
+                                }}
+                                >
                                     <Box p={2}>
                                             <h3
                                             >Tempo/BPM</h3>
@@ -88,7 +109,11 @@ function SearchBeat(){
 
                         <Grid  item>
                             <Box>
-                                <Paper>
+                                <Paper
+                                style={{
+                                    backgroundColor: 'white'
+                                }}
+                                >
                                     <Box p={2}>
                                             <h3
                                             >Instruments</h3>
@@ -122,7 +147,11 @@ function SearchBeat(){
         <>
         <Box width={300}>
             <Container>
-        <Paper>
+        <Paper
+        style={{
+            backgroundColor: 'white'
+        }}
+        >
             <Box px={1}>
          <h3 style={{
              textAlign: 'center'
@@ -136,7 +165,19 @@ function SearchBeat(){
         <br />
         <br />
         {showFilterJsx}
+        <br />
+        <br />
+        <center>
+        <Grid spacing={4} container>
 
+            {filteredBeats.map((beat)=>{
+                return(
+                <Grid key={`beat card ${beat.beat_name} specific search`} item>
+                    <ExploreBeatCard beat={beat} setSongSrc={setSongSrc}/>
+                </Grid>)
+            })}
+        </Grid>
+        </center>
             
         </>
     )

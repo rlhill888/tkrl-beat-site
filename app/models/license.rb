@@ -1,4 +1,5 @@
 class License < ApplicationRecord
+    has_one_attached :pdf_file
 
     has_many :license_beats
     has_many :user_beats

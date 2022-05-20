@@ -20,6 +20,11 @@ function TempBeatForm(){
     const [trackoutsFile, setTrackoutsFile]= useState([])
 
 
+    const [licenseName, setLicenseName]= useState('')
+    const [contractDescription, setContractDescription]= useState('')
+    const [pdfFile, setPdfFile]= useState(null)
+
+
     console.log(albumnCover)
     
 
@@ -138,6 +143,34 @@ function TempBeatForm(){
 
 
 
+        <input type='submit'></input>
+    </form>
+    <br />
+    <br />
+    <form onSubmit={(e)=>{
+        e.preventDefault()
+        const formData = new FormData();
+        formData.append('name', licenseName)
+        formData.append('contract_description', contractDescription)
+        formData.append('pdf_file', pdfFile)
+
+        fetch('http://localhost:4000/licenses',{
+            method: 'POST',
+            body: formData
+           
+        })
+        .then(res=> res.json())
+        .then(res=> console.log(res))
+
+    }}>
+        <h1>Licenses</h1>
+        <h1>Pdf</h1>
+        <input onChange={(e)=> setPdfFile(e.target.files[0])}  type='file'></input>
+        <h1>Contract description</h1>
+        <input onChange={(e)=> setContractDescription(e.target.value)}></input>
+        <h1>name</h1>
+        <input onChange={(e)=> setLicenseName(e.target.value)}></input>
+        <br />
         <input type='submit'></input>
     </form>
     </div>
