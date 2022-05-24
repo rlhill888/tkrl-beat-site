@@ -7,6 +7,9 @@ import Button from '@mui/material/Button';
 import NavBar from "./Navbar";
 import {useHistory } from "react-router-dom";
 import { formControlLabelClasses } from "@mui/material";
+import ErrorsCard from './ErrorsCard';
+import GoogleLogin from "react-google-login";
+import GoogleLoginButton from "./GoogleLoginButton";
 
 
 function Login({user, setUser}){
@@ -14,6 +17,7 @@ function Login({user, setUser}){
 
     const [email, setEmail]= useState('')
     const [password, setPassword]= useState('')
+    const [errors, setErrors]= useState([])
 
     if(user){
         history.push('/ExploreBeats')
@@ -60,6 +64,7 @@ function Login({user, setUser}){
                             <h1>Login</h1>
                             <br />
                             <br />
+                            <ErrorsCard errors={errors}/>
                             <h2>Email</h2>
                             <TextField value={email} onChange={(e)=> setEmail(e.target.value)} variant='standard'></TextField>
                             <br />
@@ -69,6 +74,9 @@ function Login({user, setUser}){
                             <br />
                             <br />
                             <Button type='submit' variant='contained'>Log In</Button>
+                            <br />
+                            <br />
+                            <GoogleLoginButton setUser={setUser} user={user}/>
                             <br />
                             <br />
                             <h3>New User?</h3>

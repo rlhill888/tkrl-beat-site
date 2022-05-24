@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :messages
   resources :license_beats
   resources :studio_session_carts
   resources :studio_sessions_users
@@ -14,9 +15,15 @@ Rails.application.routes.draw do
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
 
+
+  
+  # devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
   get '/me', to: 'users#show'
 
   post '/login', to: 'sessions#login'
+
+  post '/login_with_email', to: 'sessions#create_using_google_account'
 
   delete '/logout', to: 'sessions#logout'
 

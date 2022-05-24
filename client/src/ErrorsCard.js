@@ -4,16 +4,28 @@ import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Alert from '@mui/material/Alert';
 
-function ErrorsCard(errors){
+function ErrorsCard({errors}){
+   
+    if(errors.length===0){
+        return(
+            <> </>
+        )
+    }
 
-    if(errors.length>=1){
+    
          return(
         <>
-        <Alert severity="error">
+        <Alert 
+        style={{
+            backgroundColor: '#fcb8c0'
+        }}
+        severity="error">
             <h1>Error</h1>
 
             {errors.map((error)=>{
-                return <h3>{error}</h3>
+                return <h3 
+                key={`error ${error}`}
+                >{error}</h3>
             })}
 
         </Alert>
@@ -22,11 +34,10 @@ function ErrorsCard(errors){
 
         </>
     )
-}
-    else{
-    return(<>
-    </>)
-}
+    return(
+        <>
+        </>
+    )
 
    
 }

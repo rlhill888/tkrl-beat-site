@@ -12,10 +12,16 @@ def create
     end
 
 
-}
+    }
 
     cart_beat = CartBeat.create!(cart_beats_params)
     render json: cart_beat, status: :created
+end
+
+def destroy
+    find_cart_beat.destroy
+    head :no_content
+
 end
 
 
@@ -27,6 +33,11 @@ private
 
 def cart_beats_params
     params.permit(:cart_id, :beat_id, :license_id, :price, :music_file_type)
+end
+
+def find_cart_beat
+    CartBeat.find(params[:id])
+
 end
 
 end

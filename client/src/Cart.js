@@ -1,13 +1,23 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import NavBar from './Navbar'
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import CartTableCard from "./CartTableCard";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Button from '@mui/material/Button';
+import ModalTkrl from "./ModalTkrl";
 
 
-function Cart({user, songSrc}){
+function Cart({user, songSrc, setSongSrc}){
     console.log(user)
+    const [cart, setCart]= useState([])
+    const [rerender, setRerender]= useState(0)
+    const [openModal, setOpenModal]=useState(false)
+        if(user&&rerender===0){
+            setCart(user.cart.cart_beats)
+            setRerender(previousState=> previousState+1)
+        }
 
     return(
         <>
@@ -26,13 +36,56 @@ function Cart({user, songSrc}){
                                style={{
                                    textAlign: 'center'
                                }}
-                               >Cart</h1>
+                               >
+                                   <ShoppingCartIcon  color='primary'/>
+                               </h1>
+                               <center>
+                               <Button onClick={()=>{
+                                   cart.map(item=>{
+                                       fetch('/user_beats', {
+                                           method: 'POST',
+                                           headers: {
+                                               'Content-Type' : 'application/json'
+                                           },
+                                           body: JSON.stringify({
+                                               beat_id: item.beat_id,
+                                               user_id: user.id,
+                                               license_id: item.license_id,
+                                               music_file_type: item.music_file_type
+                                           })
+                                       })
+                                       .then(res=>{
+                                           if(res.ok){
+                                               res.json()
+                                               .then(res=> {
+                                                window.location.reload()
+                                                console.log(res)})
+                                               cart.map(item=>{
+                                                    fetch(`/cart_beats/${item.id}`, {
+                                                        method: 'DELETE'
+                                                    })
+                                                })
+                                           }
+                                           else{
+                                               res.json()
+                                               .then(res=> console.log(res))
+                                           }
+                                       })
+                                   })
+                                   
+
+
+
+                               }}>Proceed To checkout</Button>
+                               </center>
                                <br />
                                <br />
-                               {user ? user.cart.cart_beats.map(cart_beat =>{
-                                   return <CartTableCard cart_beat={cart_beat}/>
+                               {user&&cart.length >=1 ? cart.map(cart_beat =>{
+                                   return <CartTableCard setSongSrc={setSongSrc} cart_beat={cart_beat}/>
                                }) :
-                               <> </>
+                               <> 
+                               <h1>Empty Cart</h1>
+                               </>
                                }
 
                            </Box>
@@ -42,6 +95,7 @@ function Cart({user, songSrc}){
                </Paper>
            </Container>
        </Box>
+       <ModalTkrl openModal={openModal} setOpenModal={setOpenModal} />
         </>
     )
 }

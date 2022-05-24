@@ -15,9 +15,9 @@ function Signup(){
     const [email, setEmail]= useState('')
     const [password, setPassword]= useState('')
     const [passwordConfirmation, setPasswordConfirmation]= useState('')
-    const [errors, setErrors]=useState(null)
+    const [error, setErrors]=useState([])
     const history= useHistory()
-console.log(errors)
+console.log(error)
     return(
         
         <>
@@ -35,10 +35,11 @@ console.log(errors)
                                 <h1>Sign Up</h1>
                                 <br />
                                 <br />
-                                <ErrorsCard errors={errors}/>
+                                <ErrorsCard errors={error}/>
                                 <form onSubmit={(e)=>{
                                     e.preventDefault()
                                     if(password!==passwordConfirmation){
+                                        console.log('password dont match')
                                         return setErrors(['Passwords Do Not Match'])
                                     }
                                     fetch('http://localhost:4000/users', {
@@ -53,8 +54,19 @@ console.log(errors)
                                             password: password
                                         })
                                     })
-                                    .then(res=> res.json())
-                                    .then(res=> console.log(res))
+                                    .then(res=>{
+                                        if(res.ok){
+                                            res.json()
+                                            .then(res=> console.log(res))
+                                            history.push('/login')
+                                        }
+                                        else{
+                                            res.json()
+                                            .then(res=>{
+                                                setErrors(res.errors)
+                                            })
+                                        }
+                                    })
 
 
                                     // history.push('/login')

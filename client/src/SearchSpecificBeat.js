@@ -4,11 +4,11 @@ import NavBar from "./Navbar";
 import SearchBeat from "./SearchBeat";
 
 
-function SearchSpecificBeat({setSongSrc, user}){
+function SearchSpecificBeat({setSongSrc, user, songSrc}){
 
     return(
         <>
-        <NavBar user={user}/>
+        <NavBar songSrc={songSrc} user={user} />
         <Container>
              <SearchBeat setSongSrc={setSongSrc}/>
         </Container>

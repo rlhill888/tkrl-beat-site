@@ -7,11 +7,66 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { Button } from "@mui/material";
+import ModalTkrl from './ModalTkrl';
+import { Modal } from "@material-ui/core";
+import {useHistory } from "react-router-dom";
+import GoogleLoginButton from "./GoogleLoginButton";
 
-function Contact({songSrc}){
+
+function Contact({songSrc, user, setUser}){
 
     const [body, setBody]= useState('')
     const [subject, setSubject]= useState('')
+    const [phoneNumber, setPhoneNumber]= useState('')
+    const [email, setEmail]= useState('')
+    const [openModal, setOpenModal]=useState(false)
+    const [openMessageSubmitted, setOpenMessageSubmited]= useState(false)
+    const history= useHistory()
+
+
+    const signInModalText= <>
+
+        <h1>In Order To Add This Item To Your Cart You Must First Be Signed In</h1>
+        <br />
+        <Button  onClick={()=> history.push('/login')} variant="contained">Log In</Button>
+        <br />
+        <h2>If You Do Not Have An Account, You Can Make One Here</h2>
+        <br />
+        <Button onClick={()=> history.push('/signup')}>Sign Up</Button>
+        <br />
+        <h2> Or Log In With Your Google Account</h2>
+        <br />
+        <GoogleLoginButton />
+    </>
+
+    function handleSubmit(e){
+        e.preventDefault()
+        fetch('/messages', {
+            method: 'POST',
+            headers: {
+                'Content-type' : 'application/json'
+            },
+            body: JSON.stringify({
+                subject: subject,
+                body_message: body,
+                contact_phone_number: phoneNumber,
+                contact_email: email,
+                user_id: user.id
+            })
+        })
+        .then(res=>{
+            if(res.ok){
+                res.json()
+                .then(res=> {
+                    setOpenMessageSubmited(true)
+                    console.log(res)})
+            }
+            else{
+                res.json()
+                .then(res=> console.log(res))
+            }
+        })
+    }
 
     return(
         <div
@@ -24,7 +79,7 @@ function Contact({songSrc}){
         }}
         className= 'contact_background'
         >
-        <NavBar songSrc={songSrc}/> 
+        <NavBar user={user} setUser={setUser} songSrc={songSrc}/> 
         <br />
         <br />
         <br />
@@ -42,7 +97,7 @@ function Contact({songSrc}){
                                 backgroundColor: 'white'
                             } }>
                                 <Box p={4}>
-                                    <form>
+                                    <form >
                                     <h2>Send Me a Message</h2>
                                     <br />
                                     <br />
@@ -56,7 +111,57 @@ function Contact({songSrc}){
                                     <br >
                                     </br>
                                     <br />
-                                    <Button variant='contained' type='submit' style={{
+                                    <div 
+                                    style={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between'
+                                    }}
+                                    >
+                                    <div
+                                     style={{
+                                        width: '45%'
+                                    }}
+                                    >
+                                    <h3>Contact Phone Number</h3>
+                                    <TextField
+                                    onChange={(e)=> setPhoneNumber(e.target.value)}
+                                    style={{
+                                        width: '100%'
+                                    }}
+                                    placeholder= '(xxx)-xxx-xxxx'
+                                   
+                                    ></TextField>
+                                    </div>
+                                    {/* <br />
+                                    <br /> */}
+                                    <div
+                                     style={{
+                                        width: '45%'
+                                    }}
+                                    >
+                                    <h3>Contact Email</h3>
+                                    <TextField
+                                    onChange={(e)=> setEmail(e.target.value)}
+                                     placeholder= 'example@gmail.com'
+                                      style={{
+                                        width: '100%'
+                                    }}
+                                    ></TextField>
+                                    </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <Button 
+                                    onClick={(e)=>{
+                                        if(!user){
+                                           setOpenModal(true)
+                                        }
+                                        if(user){
+                                            handleSubmit(e)
+                                        }
+                                    }}
+                                    variant='contained' style={{
                                         color: 'black'
                                     }}>Submit</Button>
                                     </form>
@@ -133,6 +238,14 @@ function Contact({songSrc}){
                 </Paper>
             </Container>
         </Box>
+        <ModalTkrl openModal={openModal} setOpenModal={setOpenModal} modalText={signInModalText}/>
+        <ModalTkrl openModal={openMessageSubmitted} setOpenModal={setOpenMessageSubmited} 
+        modalText={<> 
+        <h3> Your Message Was Sent Successfully!
+            <br />
+            We Will Contact You Soon!
+        </h3>
+        </>}/>
         
       
         </div>

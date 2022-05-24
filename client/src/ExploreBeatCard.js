@@ -12,6 +12,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import Stack from '@mui/material/Stack';
 import { margin, padding } from "@mui/system";
 import {useHistory } from "react-router-dom";
+import OmniAuthTest from "./OmiAuthTest";
 
 function ExploreBeatCard({beat, setSongSrc}){
     const history= useHistory()
@@ -50,10 +51,8 @@ function ExploreBeatCard({beat, setSongSrc}){
                                                    
                                                    </h2>
                                                    <center>
-                                            <IconButton  onClick={()=> {
-                                            
-                                                setSongSrc(beat.wav_file.url)}}>
-                                                <PlayArrowIcon color='primary'/>
+                                            <IconButton  >
+                                                <PlayArrowIcon onClick={()=> setSongSrc(beat.wav_file.url)} color='primary'/>
                                             </IconButton>
                                             </center>
                                                </Box>

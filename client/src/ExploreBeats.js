@@ -15,6 +15,7 @@ import FeaturedBeats from "./FeaturedBeats";
 import AudioPlayer from "./AudioPlayer";
 import DealsAndDiscounts from "./DealsAndDiscount";
 import NewestBeats from "./NewestBeats";
+import OmniAuthTest from "./OmiAuthTest";
 
 
 
@@ -94,6 +95,7 @@ function ExploreBeats({songSrc, setSongSrc, user, setUser}){
         <div 
         // className='main_beats_background'
         >  
+        <OmniAuthTest />
         <NavBar setUser={setUser} user={user} songSrc={songSrc}/>
         {/* <TempBeatForm /> */}
         

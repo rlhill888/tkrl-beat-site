@@ -168,6 +168,11 @@ function SearchBeat({setSongSrc}){
         <br />
         <br />
         <center>
+            <Container>
+                <Paper
+                className='newestbeats_background'
+                >
+                    <Box p={2}>
         <Grid spacing={4} container>
 
             {filteredBeats.map((beat)=>{
@@ -177,6 +182,9 @@ function SearchBeat({setSongSrc}){
                 </Grid>)
             })}
         </Grid>
+        </Box>
+        </Paper>    
+        </Container>
         </center>
             
         </>

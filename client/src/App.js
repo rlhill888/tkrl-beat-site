@@ -13,6 +13,9 @@ import SearchSpecificBeat from './SearchSpecificBeat';
 import ShowIndivisualBeat from './ShowIndivisualBeat';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Signup from './Signup';
+import Profile from './Profile'
+import { GoogleLogin } from 'react-google-login' 
+import { gapi } from 'gapi-script'
 
 const theme= createTheme({
     palette: {
@@ -38,9 +41,38 @@ const [songSrc, setSongSrc]= useState({src: null, name: null})
 const [user, setUser]= useState(null)
 const [cart, setCart]= useState(null)
 
+const clientId= '435900012800-ideju25l0capooh741acjnja591slp78.apps.googleusercontent.com'
+
+
+console.log(user)
+
 function fetchCart(){
 
 }
+useEffect(()=>{
+  function start(){
+    gapi.client.init({
+      clientId: clientId,
+      scope: ""
+    })
+
+    const auth2 = gapi.auth2.getAuthInstance();
+if (auth2 != null) {
+    auth2.signOut().then(
+         auth2.disconnect().then(console.log('LOGOUT SUCCESSFUL'))
+     )
+}
+  }
+  // const auth2 = gapi.auth2.getAuthInstance();
+  // if (auth2 != null) {
+  //     auth2.signOut().then(
+  //          auth2.disconnect().then(console.log('LOGOUT SUCCESSFUL'))
+  //      )
+  // }
+
+  gapi.load('client:auth2', start)
+
+}, [])
 
 useEffect(()=>{
 fetch('/me')
@@ -61,13 +93,13 @@ fetch('/me')
    <Switch>
     
     <Route exact path="/cart">
-        <Cart setSongSrc={setSongSrc} user={user} songSrc={songSrc}/>
+        <Cart setSongSrc={setSongSrc} setUser={setUser} user={user} songSrc={songSrc}/>
     </Route>
     <Route exact path="/beat/:id">
         <ShowIndivisualBeat setUser={setUser} user={user} songSrc={songSrc}/>
     </Route>
     <Route exact path="/contact">
-        <Contact user={user} songSrc={songSrc}/>
+        <Contact user={user} setUser={setUser} user={user} songSrc={songSrc}/>
     </Route>
     <Route exact path="/studiosessions">
         <StudioSession />
@@ -76,13 +108,16 @@ fetch('/me')
         <ExploreBeats user={user} setUser={setUser} setSongSrc={setSongSrc} songSrc={songSrc}/>
     </Route>
     <Route exact path="/SearchSpecificBeat">
-        <SearchSpecificBeat setSongSrc={setSongSrc} user={user}/>
+        <SearchSpecificBeat setSongSrc={setSongSrc} songSrc={songSrc} user={user}/>
     </Route>
     <Route exact path="/Login">
         <Login user={user} setUser={setUser}/>
     </Route>
     <Route exact path="/signup">
         <Signup />
+    </Route>
+    <Route exact path="/profile">
+        <Profile setSongSrc={setSongSrc} setUser={setUser} user={user} songSrc={songSrc}/>
     </Route>
     {/* <Route  exact path="/home">
             <Home />

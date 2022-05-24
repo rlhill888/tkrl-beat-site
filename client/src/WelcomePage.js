@@ -3,6 +3,7 @@ import logo from './photos/tkrl_logo.png'
 import {useHistory } from "react-router-dom";
 import Button from '@mui/material/Button';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import CardActionArea from '@mui/material/CardActionArea';
 
 function WelcomePage(){
 
@@ -38,32 +39,35 @@ function WelcomePage(){
         }}
         className= 'welcome_background'
         >
+         
             <img
             style={{
                 opacity: `${opacity}`,
                 position:'absolute',
                 top: '25%',
-                left:'25%',
+                left:'26%',
                 right: '25%'
 
             }}
             src={logo}
             ></img>
-
+         
+          
+            <center>
             <Button
             style={{
                 opacity: `${opacity}`,
                 position:'absolute',
                 top: '50%',
                 left:'25%',
-                right: '25%'
+                right: '25%',
+                fontSize: '24px'
             }}
             onClick={()=> history.push('/ExploreBeats')}
             >
-
-                temporary button that takes you to explore Beats
-                <ArrowRightAltIcon />
+                Welcome
             </Button>
+            </center>
         </div>
     )
 }

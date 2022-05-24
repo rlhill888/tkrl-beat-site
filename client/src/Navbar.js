@@ -155,12 +155,17 @@ function NavBar({songSrc, user, setUser}){
            right: 120
        }}
         > 
-        <Button>{user.first_name} {user.last_name}</Button>
+        <Button  
+        onClick={()=>{
+            history.push('/profile')
+        }}
+        >{user.first_name} {user.last_name}</Button>
         <Button onClick={()=>{
             fetch('logout', {
                 method: 'DELETE',
                 headers: {'Content-Type' : 'application/json'}
             })
+            window.location.reload()
             setUser(null)
         }}>Log Out</Button>
         </div>
