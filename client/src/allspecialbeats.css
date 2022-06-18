@@ -1,0 +1,107 @@
+@media only screen and (min-width: 1280px) {
+    /* For desktops: */
+
+    .mainDiv{
+      height: 430px;
+      position:relative;
+      overflow-x: auto;
+     }
+  
+     .grid{
+       max-width: '255vw'
+     }
+  
+     .title{
+      top: 2vw;
+      position: relative;
+      display: flex;
+  justify-content: center;
+  align-items: center;
+      color: white;
+     }
+
+    
+    
+    
+  }
+
+ @media only screen and (max-width: 1279px) {
+    /* For for laptops and tabletss: */
+
+    .mainDiv{
+      height: 430px;
+      position:relative;
+      overflow-x: auto;
+     }
+  
+     .grid{
+       max-width: '255vw'
+     }
+  
+     .title{
+      top: 5vw;
+      position: relative;
+      display: flex;
+  justify-content: center;
+  align-items: center;
+      color: white;
+     }
+
+   
+   
+    
+  }
+
+  
+  @media only screen and (max-width: 769px) {
+    /* Forbigger mobile phones and small tablets: */
+    .mainDiv{
+      height: 430px;
+      position:relative;
+      overflow-x: auto;
+     }
+  
+     .grid{
+       max-width: '255vw'
+     }
+  
+     .title{
+      top: 5vw;
+      position: relative;
+      display: flex;
+  justify-content: center;
+  align-items: center;
+      color: white;
+     }
+    
+ 
+   
+    
+  }
+  
+  @media only screen and (max-width: 480px) {
+    /* For mobile phones: */
+
+   .mainDiv{
+    height: 430px;
+    position:relative;
+    overflow-x: auto;
+   }
+
+   .grid{
+     max-width: '255vw'
+   }
+
+   .title{
+    top: 5vw;
+    position: relative;
+    display: flex;
+justify-content: center;
+align-items: center;
+    color: white;
+   }
+
+    
+   
+    
+  }

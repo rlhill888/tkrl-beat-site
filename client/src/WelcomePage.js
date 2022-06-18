@@ -4,6 +4,7 @@ import {useHistory } from "react-router-dom";
 import Button from '@mui/material/Button';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import CardActionArea from '@mui/material/CardActionArea';
+import './Welcome.css'
 
 function WelcomePage(){
 
@@ -39,18 +40,27 @@ function WelcomePage(){
         }}
         className= 'welcome_background'
         >
-         
-            <img
+         <div
+         style={{
+              display: 'flex',
+                flexDirection: 'column',
+         }}
+         >
+<img
+
+className="logoImage"
             style={{
                 opacity: `${opacity}`,
-                position:'absolute',
-                top: '25%',
-                left:'26%',
-                right: '25%'
+               
+                position:'absolute'
 
             }}
             src={logo}
+            width='100%'
             ></img>
+         </div>
+
+            
          
           
             <center>

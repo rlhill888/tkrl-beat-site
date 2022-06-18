@@ -12,30 +12,61 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import Stack from '@mui/material/Stack';
 import { margin, padding } from "@mui/system";
 import ExploreBeatDiscountCard from "./EploreBeatDiscountCard";
+import './DealsAndDiscount.css'
 
 
 function DealsAndDiscounts({beats, songSrc, setSongSrc}){
 
+    function setGridStyle(){
+        if(window.innerWidth<=768){
+            return(
+                {
+                    width: '255vw'
+                }
+            )
+        }
+        if(window.innerWidth<=1279){
+            return(
+                {
+                    width: '125vw'
+                }
+            )
+        }
+        if(window.innerWidth>1279){
+            return(
+                {
+
+                }
+            )
+        }
+    }
+
     return(
         <> 
         <Paper elevation={15} className='newestbeats_background'>
+
+             <h3
+               className="titleDiscounts"
+               >Newest Deals and Beat Sales</h3>
+               <br />
+
+
               <Box
               p={4}
+              className='mainDiv'
               >
 
 
-               <h3
-               style={{
-                   color: 'white'
-               }}
-               >Newest Deals and Beat Sales</h3>
+              
                    <br />
                       <Container>
                        <Grid spacing={7}
                        direction="row"
                            alignItems="center"
                            justifyContent="center"
+                           style={setGridStyle()}
                             container>
+                                <br />
                           
                            {beats.map((beat)=>{
                                return <ExploreBeatDiscountCard beat={beat} setSongSrc={setSongSrc}/>

@@ -13,6 +13,7 @@ import Stack from '@mui/material/Stack';
 import { margin, padding } from "@mui/system";
 import {useHistory } from "react-router-dom";
 import OmniAuthTest from "./OmiAuthTest";
+import './ExploreBeatCard.css'
 
 function ExploreBeatCard({beat, setSongSrc}){
     const history= useHistory()
@@ -24,7 +25,9 @@ function ExploreBeatCard({beat, setSongSrc}){
                                 <Box >
                                     
                                     <Paper elevation={15}>
-                                        <Box width='250px' >
+                                        <Box 
+                                        className="mainBox"
+                                        >
                                             <CardActionArea onClick={()=>{ 
                                                 setSongSrc(beat.wav_file.url)
                                                 history.push(`/beat/${beat.id}`)} }>

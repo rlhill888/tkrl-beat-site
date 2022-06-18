@@ -114,20 +114,14 @@ function NavBar({songSrc, user, setUser}){
         </Button>
 
 
-        <center>
-            <img height='75' src={logo}></img>
+        <div
+        className="logo"
+        >
+            <img height='55' src={logo}></img>
 
-        </center>
-        <IconButton onClick={()=> history.push('/SearchSpecificBeat')}>
-            <SearchIcon color='primary'/>
-        </IconButton>
-        
-        <Box
-        style={{
-            position: 'absolute',
-           right: '37%',
-           left: '37%'
-       }}>
+        </div>
+      
+        <div className="audioPlayer">
 
            <ThemeProvider theme={theme}>
         <AudioPlayer 
@@ -136,7 +130,10 @@ function NavBar({songSrc, user, setUser}){
         
         />
         </ThemeProvider>
-        </Box>
+
+
+        </div>
+        
        
 
         <Button style={{
@@ -147,41 +144,7 @@ function NavBar({songSrc, user, setUser}){
         >
             <ShoppingCartIcon />
         </Button>
-        {user? 
-        
-        <div
-        style={{
-            position: 'absolute',
-           right: 120
-       }}
-        > 
-        <Button  
-        onClick={()=>{
-            history.push('/profile')
-        }}
-        >{user.first_name} {user.last_name}</Button>
-        <Button onClick={()=>{
-            fetch('logout', {
-                method: 'DELETE',
-                headers: {'Content-Type' : 'application/json'}
-            })
-            window.location.reload()
-            setUser(null)
-        }}>Log Out</Button>
-        </div>
-        
-        : 
-        
-        <div
-        style={{
-            position: 'absolute',
-           right: 120
-       }}
-        > 
-        <Button
-        onClick={()=> history.push('/login')}
-        >Log In</Button>
-        </div>}
+       
         </Toolbar>
         </AppBar>
         
@@ -192,9 +155,19 @@ function NavBar({songSrc, user, setUser}){
 
                     <Container>
                         <Box m={2} p={2}>
-                            <center>
-                        <img height='80' src={logo}></img>
-                        </center>
+                           
+                                <div>
+                                   <img 
+                        className="logo2"
+                        height='80' src={logo}></img>
+                        
+                                </div>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                        
 
                 
                     <br />
@@ -214,7 +187,8 @@ function NavBar({songSrc, user, setUser}){
                     <br /> */}
                   
                     <Button 
-                   
+                    className="navbarbutton"
+                   variant="contained"
                     onClick={()=> history.push('/ExploreBeats')} >
                         <MusicNoteIcon />
                         Explore Beats</Button>
@@ -233,11 +207,72 @@ function NavBar({songSrc, user, setUser}){
                     <br /> */}
                     
                     <Button 
-                    
+                    className="navbarbutton"
+                    variant="contained"
                     onClick={()=> history.push('/contact')}
                     >
                         <ConnectWithoutContactIcon />
                         Contact</Button>
+                        <br />
+                        <br />
+                        <br />
+                        <Button
+                        className="navbarbutton"
+                        variant="contained"
+                        onClick={()=> history.push('/SearchSpecificBeat')}
+                        >
+                           
+
+                            
+            <SearchIcon />
+        Search Beats
+                        </Button>
+                        <br />
+                        <br />
+                        <br />
+                        {user? 
+        
+        <div
+        > 
+        <center>
+
+            <Button  
+            className="navbarbutton"
+            variant="contained"
+        onClick={()=>{
+            history.push('/profile')
+        }}
+        >{user.first_name} {user.last_name}</Button>
+        <br />
+        <br />
+        <br />
+
+        <Button  
+        className="navbarbutton"
+        variant="contained"
+        onClick={()=>{
+            fetch('logout', {
+                method: 'DELETE',
+                headers: {'Content-Type' : 'application/json'}
+            })
+            window.location.reload()
+            setUser(null)
+        }}>Log Out</Button>
+        </center>
+        
+        </div>
+        
+        : 
+        
+        <div
+        > 
+        <Button
+        variant="contained"
+        onClick={()=> history.push('/login')}
+        >Log In</Button>
+        </div>}
+
+                        
 
                     </Box>
                     </Container>

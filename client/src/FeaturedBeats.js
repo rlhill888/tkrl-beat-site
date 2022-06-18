@@ -13,31 +13,62 @@ import Stack from '@mui/material/Stack';
 import { margin, padding } from "@mui/system";
 import {useHistory } from "react-router-dom";
 import ExploreBeatCard from "./ExploreBeatCard";
+import './allspecialbeats.css'
 
 function FeaturedBeats({beats,  setSongSrc}){
     
     const history=useHistory()
 
+    function setGridStyle(){
+        if(window.innerWidth<=768){
+            return(
+                {
+                    width: '255vw'
+                }
+            )
+        }
+        if(window.innerWidth<=1279){
+            return(
+                {
+                    width: '125vw'
+                }
+            )
+        }
+        if(window.innerWidth>1279){
+            return(
+                {
+                    
+                }
+            )
+        }
+    }
+
     return(
         <> 
          <Paper elevation={15} className='newestbeats_background'>
+            <center>
+
+                 <h3
+                className="title"
+                >Featured beats</h3>
+            </center>
+           
                <Box
                p={4}
+               className='mainDiv'
                >
 
 
-                <h3
-                style={{
-                    color: 'white'
-                }}
-                >Featured beats</h3>
+                
                     <br />
                        <Container>
                         <Grid spacing={7}
                         direction="row"
                             alignItems="center"
                             justifyContent="center"
-                             container>
+                             container
+                             style={setGridStyle()}
+                             >
 
                                  {beats.map((beat)=>{
                         return <ExploreBeatCard beat={beat} setSongSrc={setSongSrc}/>

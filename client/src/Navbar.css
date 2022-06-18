@@ -17,3 +17,79 @@
     background: rgb(0,0,0);
     background: linear-gradient(54deg, rgba(0,0,0,1) 0%, rgb(0, 0, 0) 100%);
 }
+
+.navbarbutton{
+    opacity: .75;
+    width: 100%;
+}
+
+
+@media only screen and (min-width: 1280px) {
+    /* For desktops: */
+    .audioPlayer{
+        position: absolute;
+        right: 37%;
+        left: 37%;
+        
+    }
+    
+    
+    
+  }
+
+ @media only screen and (max-width: 1279px) {
+    /* For for laptops and tabletss: */
+
+    .audioPlayer{
+        position: fixed;
+        right: 15%;
+        left: 15%;
+        bottom: 20px;
+        
+    }
+   
+    
+  }
+
+  
+  @media only screen and (max-width: 769px) {
+    /* Forbigger mobile phones and small tablets: */
+    .audioPlayer{
+        position: fixed;
+        right: 10%;
+        left: 10%;
+        bottom: 20px;
+        opacity: .9;
+        
+    }
+ 
+   
+    
+  }
+  
+  @media only screen and (max-width: 480px) {
+    /* For mobile phones: */
+
+    .audioPlayer{
+        position: fixed;
+        right: 10%;
+        left: 10%;
+        bottom: 20px;
+        opacity: .9;
+        
+    }
+
+    .logo{
+        position: absolute;
+        left: 37%;
+    }
+
+    .logo2{
+        position: absolute;
+        left: 25%;
+    }
+
+    
+   
+    
+  }

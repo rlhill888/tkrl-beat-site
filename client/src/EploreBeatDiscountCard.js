@@ -12,6 +12,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import Stack from '@mui/material/Stack';
 import { margin, padding } from "@mui/system";
 import {useHistory } from "react-router-dom";
+import './ExploreBeatDiscount.css'
 
 function ExploreBeatDiscountCard({beat, setSongSrc}){
 
@@ -26,7 +27,9 @@ function ExploreBeatDiscountCard({beat, setSongSrc}){
                                 <Box >
                                     
                                     <Paper elevation={15}>
-                                        <Box width='250px' >
+                                        <Box 
+                                        className="mainBox"
+                                         >
                                             <CardActionArea onClick={()=> history.push(`/beat/${beat.id}`) }>
                                             <CardMedia 
                                             component="img"

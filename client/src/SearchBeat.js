@@ -11,6 +11,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Switch from '@mui/material/Switch';
 import ExploreBeatCard from "./ExploreBeatCard";
+import './Search.css'
 
 
 function SearchBeat({setSongSrc}){
@@ -66,7 +67,9 @@ function SearchBeat({setSongSrc}){
                                     backgroundColor: 'white'
                                 }}
                                 >
-                                    <Box p={2}>
+                                    <Box
+                                   
+                                    p={2}>
                                             <h3
                                             >Beat Name</h3>
                                             <TextField value={beatName} onChange={(e)=> setBeatName(e.target.value)}></TextField>
@@ -146,7 +149,10 @@ function SearchBeat({setSongSrc}){
     return(
         <>
         <Box width={300}>
-            <Container>
+
+            <div className="searchToggle">
+
+                <Container>
         <Paper
         style={{
             backgroundColor: 'white'
@@ -161,6 +167,8 @@ function SearchBeat({setSongSrc}){
             </Box>
         </Paper>
         </Container>
+            </div>
+            
         </Box>
         <br />
         <br />
@@ -168,11 +176,19 @@ function SearchBeat({setSongSrc}){
         <br />
         <br />
         <center>
-            <Container>
+           
+
+                <Container>
+            <div
+           
+            >
+
                 <Paper
                 className='newestbeats_background'
                 >
-                    <Box p={2}>
+                    <Box p={2}
+                     className="mainSearchDiv"
+                    >
         <Grid spacing={4} container>
 
             {filteredBeats.map((beat)=>{
@@ -183,9 +199,15 @@ function SearchBeat({setSongSrc}){
             })}
         </Grid>
         </Box>
-        </Paper>    
+        </Paper> 
+        </div>
+
         </Container>
+            
+            
         </center>
+        <br />
+        <br />
             
         </>
     )
