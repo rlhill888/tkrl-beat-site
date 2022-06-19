@@ -35,7 +35,7 @@ function NewestBeats({beats, songSrc, setSongSrc}){
         if(window.innerWidth>1279){
             return(
                 {
-                    width: '100vw'
+                    width: '70vw'
 
                 }
             )

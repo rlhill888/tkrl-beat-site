@@ -37,7 +37,8 @@ function FeaturedBeats({beats,  setSongSrc}){
         if(window.innerWidth>1279){
             return(
                 {
-                    
+                    width: '70vw'
+
                 }
             )
         }

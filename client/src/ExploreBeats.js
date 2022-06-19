@@ -16,6 +16,7 @@ import AudioPlayer from "./AudioPlayer";
 import DealsAndDiscounts from "./DealsAndDiscount";
 import NewestBeats from "./NewestBeats";
 import OmniAuthTest from "./OmiAuthTest";
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 
@@ -37,7 +38,10 @@ function ExploreBeats({songSrc, setSongSrc, user, setUser}){
         }
         if(featuredBeats===null){
             featureBeatJsx= <> 
-            <h1>Loading</h1>
+            <center>
+                 <CircularProgress />
+            </center>
+           
             </>
         }
 
@@ -47,7 +51,9 @@ function ExploreBeats({songSrc, setSongSrc, user, setUser}){
        }
        if(beatsWithDeals===null){
         beatsWithealsJsx= <> 
-        <h1>Loading</h1>
+       <center>
+                 <CircularProgress />
+            </center>
         </>
          
        }
@@ -58,7 +64,9 @@ function ExploreBeats({songSrc, setSongSrc, user, setUser}){
         }
         if(newestBeats===null){
         newestBeatJsx= <>
-        <h1>Loading</h1>
+        <center>
+                 <CircularProgress />
+            </center>
          </>
             
         }

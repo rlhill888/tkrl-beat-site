@@ -5,6 +5,7 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import ExploreBeatCard from "./ExploreBeatCard";
 import Grid from '@mui/material/Grid';
+import './Profile.css'
 
 
 function Profile({user, setUser, songSrc, setSongSrc}){
@@ -39,13 +40,23 @@ function Profile({user, setUser, songSrc, setSongSrc}){
                                 {user.user_beats.map(user_beat=>{
                                     return (
                                     <>
+                                    <div
+                                    className="profileBeats"
+                                    >
+
+                                        
+                                    
                                     <Grid item >
                                     <ExploreBeatCard beat={user_beat.beat} setSongSrc={setSongSrc}/>
                                     </Grid>
+
+                                    </div>
                                     </>)
 
                                 })}
                                 </Grid>
+
+                                
                             </Box>
 
 

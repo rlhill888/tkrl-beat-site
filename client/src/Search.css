@@ -3,15 +3,20 @@
     justify-content: center;
 }
 
+.centerSearchDiv{
+
+    display: flex;
+    justify-content: center;
+}
+
 
 
 @media only screen and (min-width: 1280px) {
     /* For desktops: */
-    .audioPlayer{
-        position: absolute;
-        right: 37%;
-        left: 37%;
-        
+    .mainSearchDiv{
+        height: 500px;
+    position:relative;
+    overflow-x: auto;
     }
     
     
@@ -21,12 +26,10 @@
  @media only screen and (max-width: 1279px) {
     /* For for laptops and tabletss: */
 
-    .audioPlayer{
-        position: fixed;
-        right: 15%;
-        left: 15%;
-        bottom: 20px;
-        
+    .mainSearchDiv{
+        height: 500px;
+    position:relative;
+    overflow-x: auto;
     }
    
     
@@ -35,13 +38,10 @@
   
   @media only screen and (max-width: 769px) {
     /* Forbigger mobile phones and small tablets: */
-    .audioPlayer{
-        position: fixed;
-        right: 10%;
-        left: 10%;
-        bottom: 20px;
-        opacity: .9;
-        
+    .mainSearchDiv{
+        height: 500px;
+    position:relative;
+    overflow-x: auto;
     }
  
    

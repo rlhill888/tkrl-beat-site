@@ -267,6 +267,7 @@ function NavBar({songSrc, user, setUser}){
         <div
         > 
         <Button
+         className="navbarbutton"
         variant="contained"
         onClick={()=> history.push('/login')}
         >Log In</Button>

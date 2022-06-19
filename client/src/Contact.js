@@ -11,6 +11,7 @@ import ModalTkrl from './ModalTkrl';
 import { Modal } from "@material-ui/core";
 import {useHistory } from "react-router-dom";
 import GoogleLoginButton from "./GoogleLoginButton";
+import './Contact.css'
 
 
 function Contact({songSrc, user, setUser}){
@@ -112,16 +113,10 @@ function Contact({songSrc, user, setUser}){
                                     </br>
                                     <br />
                                     <div 
-                                    style={{
-                                        display: 'flex',
-                                        flexDirection: 'row',
-                                        justifyContent: 'space-between'
-                                    }}
+                                   className="phoneNumberAndEmailDiv"
                                     >
                                     <div
-                                     style={{
-                                        width: '45%'
-                                    }}
+                                     className="phoneAndEmailContactWidth"
                                     >
                                     <h3>Contact Phone Number</h3>
                                     <TextField
@@ -136,9 +131,7 @@ function Contact({songSrc, user, setUser}){
                                     {/* <br />
                                     <br /> */}
                                     <div
-                                     style={{
-                                        width: '45%'
-                                    }}
+                                     className="phoneAndEmailContactWidth"
                                     >
                                     <h3>Contact Email</h3>
                                     <TextField

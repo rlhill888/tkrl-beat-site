@@ -1,0 +1,68 @@
+@media only screen and (min-width: 1280px) {
+    /* For desktops: */
+
+    .phoneNumberAndEmailDiv{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+       }
+
+       .phoneAndEmailContactWidth{
+        width: 45%;
+       }
+
+  
+    
+    
+    
+  }
+
+ @media only screen and (max-width: 1279px) {
+    /* For for laptops and tabletss: */
+
+    .phoneNumberAndEmailDiv{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+       }
+
+       .phoneAndEmailContactWidth{
+        width: 45%;
+       }
+
+   
+   
+    
+  }
+
+  
+  @media only screen and (max-width: 769px) {
+    /* Forbigger mobile phones and small tablets: */
+    
+ 
+    .phoneNumberAndEmailDiv{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+       }
+
+       .phoneAndEmailContactWidth{
+        width: 45%;
+       }
+  }
+  
+  @media only screen and (max-width: 480px) {
+    /* For mobile phones: */
+
+    .phoneNumberAndEmailDiv{
+        display: block;
+       
+       }
+
+       .phoneAndEmailContactWidth{
+        width: 100%;
+       
+       }
+
+  
+}

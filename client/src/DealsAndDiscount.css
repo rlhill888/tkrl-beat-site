@@ -4,8 +4,8 @@
     
     .mainDiv{
       height: 500px;
-      /* position:relative; */
-      /* overflow-x: auto; */
+      position:relative; 
+       overflow-x: auto;
      }
   
      .grid{
@@ -13,7 +13,7 @@
      }
   
      .titleDiscounts{
-      top: 5vw;
+      top: 2vw;
          position: relative;
          display: flex;
   justify-content: center;
